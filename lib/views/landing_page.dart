@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:recebuddy_main/viewmodels/landing_page_viewmodel.dart';
+import 'package:recebuddy_main/views/registration_page.dart'; // Import the RegistrationPage
 
 class LandingPage extends StatelessWidget {
   final LandingPageViewModel viewModel = LandingPageViewModel();
@@ -14,7 +15,6 @@ class LandingPage extends StatelessWidget {
     return Scaffold(
       body: Center(
         child: SingleChildScrollView(
-          // Added for scrolling when keyboard appears
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
@@ -39,7 +39,7 @@ class LandingPage extends StatelessWidget {
                     labelText: 'Password',
                     border: OutlineInputBorder(),
                   ),
-                  obscureText: true,
+                  obscureText: false, // Set to false to make password visible
                 ),
               ),
               ElevatedButton(
@@ -48,7 +48,14 @@ class LandingPage extends StatelessWidget {
                 child: const Text('Login'),
               ),
               ElevatedButton(
-                onPressed: () => viewModel.navigateToRegister(context),
+                onPressed: () {
+                  // Navigate to Registration Page
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => const RegistrationPage()),
+                  );
+                },
                 child: const Text('Register'),
               ),
             ],
